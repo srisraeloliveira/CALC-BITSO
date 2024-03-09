@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora - Real para Peso</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Calculadora de Câmbio</h1>
+    <form id="cambio-form">
+        <div>
+            <label for="tipo-operacao">Tipo de Operação:</label>
+            <select id="tipo-operacao" onchange="alternarModoOperacao()">
+                <option value="deposito" selected>Depósito</option>
+                <option value="efetivo">Efetivo</option>
+            </select>
+        </div>
+        
+        <div>
+            <label for="cambio-oficial">Câmbio Oficial:</label>
+            <input type="number" id="cambio-oficial" step="0.01" placeholder="Insira o câmbio oficial">
+        </div>
+        <div>
+            <label for="percentual-lucro">Percentual de Lucro (%):</label>
+            <input type="number" id="percentual-lucro" step="0.01" value="2.5" placeholder="Insira o percentual de lucro">
+        </div>
+        <div id="taxa-efetivo-container" style="display: none;">
+            <label for="taxa-efetivo">Taxa em Efetivo:</label>
+            <input type="number" id="taxa-efetivo" step="0.01" value="10" placeholder="Insira a taxa em efetivo">
+        </div>
+        <div id="desconto-container" style="display: none;">
+            <label for="desconto">Desconto (em centavos):</label>
+            <input type="number" id="desconto" step="0.01" value="0" placeholder="Insira o desconto">
+        </div>
+
+        <div id="cambio-revenda-container" style="display: none;">
+            <strong>Câmbio de Revenda:</strong> <span id="cambio-revenda"></span>
+        </div>
+        <div>
+            <label for="spread-medio">Spread Médio (%):</label>
+            <input type="number" id="spread-medio" step="0.01" value="0.98" placeholder="Insira o spread médio">
+        </div>
+        <div>
+            <label for="valor">Valor:</label>
+            <input type="number" id="valor" step="0.01" placeholder="Insira o valor">
+        </div>
+       
+        
+        <button type="button" onclick="calcular()">Calcular</button>
+        <button type="button" onclick="limparCampos()">Limpar</button>
+    </form>
+    <div id="resultado"></div>
+    <script src="script.js"></script>
+    <p>Para converter de Peso para Real, <a href="peso_para_real.html">clique aqui</a>.</p>
+    <p>Para voltar a página principal, <a href="index.html">clique aqui</a>.</p>
+</body>
+</html>
