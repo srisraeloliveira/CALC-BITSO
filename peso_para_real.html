@@ -10,7 +10,7 @@
     <h1>Calculadora de Câmbio</h1>
     <form id="cambio-form">
         <div>
-            <label for="cambio-oficial">Câmbio Oficial:</label>
+            <label for="cambio-oficial">Câmbio Oficial - AR$:</label>
             <input type="number" id="cambio-oficial" step="0.01" placeholder="Insira o câmbio oficial">
         </div>
         <div>
@@ -22,14 +22,14 @@
             <input type="number" id="spread-medio" step="0.01" value="0.98" placeholder="Insira o spread médio">
         </div>
         <div>
-            <label for="taxa-conversao">Taxa de Conversão (pesos):</label>
+            <label for="taxa-conversao">Taxa de Conversão - AR$:</label>
             <input type="number" id="taxa-conversao" step="0.01" value="15" placeholder="Insira a taxa de conversão">
         </div>
         <div id="cambio-revenda-container" style="display: none;">
-            <strong>Câmbio de Revenda:</strong> <span id="cambio-revenda"></span>
+            <strong>Câmbio de Revenda - AR$:</strong> <span id="cambio-revenda"></span>
         </div>        
         <div>
-            <label for="valor">Valor:</label>
+            <label for="valor">Valor - AR$:</label>
             <input type="number" id="valor" step="0.01" placeholder="Insira o valor">
         </div>
         <button type="button" onclick="calcular()">Calcular</button>

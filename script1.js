@@ -6,14 +6,13 @@ document.addEventListener("DOMContentLoaded", function () {
   document
     .getElementById("percentual-lucro")
     .addEventListener("input", calcularCambioRevenda);
-  document.getElementById("spread-medio").addEventListener("input", calcular);
-  document.getElementById("valor").addEventListener("input", calcular);
   document
-    .getElementById("taxa-efetivo")
+    .getElementById("spread-medio")
     .addEventListener("input", calcularCambioRevenda);
   document
     .getElementById("taxa-conversao")
     .addEventListener("input", calcularCambioRevenda);
+  document.getElementById("valor").addEventListener("input", calcular);
 
   // Calcula o câmbio de revenda quando a página é carregada
   calcularCambioRevenda();
@@ -31,8 +30,9 @@ function calcularCambioRevenda() {
   var taxaConversao =
     parseFloat(document.getElementById("taxa-conversao").value) || 0;
 
-  var cambioRevenda = cambioOficial * (1 + percentualLucro) + taxaConversao;
-  cambioRevenda = cambioRevenda * (1 + spreadMedio);
+  var cambioRevendaTemp = cambioOficial + taxaConversao;
+  var cambioRevenda =
+    cambioRevendaTemp * (1 + percentualLucro) * (1 + spreadMedio);
 
   // Atualiza o valor de câmbio de revenda na página
   atualizarValor("cambio-revenda", cambioRevenda);
@@ -54,13 +54,9 @@ function calcular() {
     document.getElementById("cambio-oficial").value
   );
 
-  // var valorTotal = valor / cambioOficial;
-  // var lucro = (valorTotal * cambioRevenda) - valor;
-  // var valorEnviar = valorTotal * cambioRevenda;
-
   var valorTotal = valor / cambioOficial;
-  var lucro = valorTotal * cambioRevenda - valor;
   var valorEnviar = valor / cambioRevenda;
+  var lucro = valor - valorEnviar * cambioOficial;
 
   // Atualiza os valores na página
   atualizarValoresCalculados(valorTotal, lucro, valorEnviar);
@@ -83,13 +79,12 @@ function atualizarValoresCalculados(valorTotal, lucro, valorEnviar) {
 
   if (isNaN(valorTotal) || isNaN(lucro) || isNaN(valorEnviar)) {
     htmlResultado += "<strong>Valor Total:</strong> ---<br>";
+    htmlResultado += "<strong>A Enviar:</strong> ---<br>";
     htmlResultado += "<strong>Lucro:</strong> ---<br>";
-    htmlResultado += "<strong>A Enviar:</strong> ---";
   } else {
-    htmlResultado +=
-      "<strong>Valor Total:</strong> $" + valorTotal.toFixed(2) + "<br>";
-    htmlResultado += "<strong>Lucro:</strong> $" + lucro.toFixed(2) + "<br>";
-    htmlResultado += "<strong>A Enviar:</strong> $" + valorEnviar.toFixed(2);
+    htmlResultado += "<strong>Valor Total:</strong> R$" + valorTotal.toFixed(2) + "<br>";
+    htmlResultado += "<strong>A Enviar:</strong> R$" + valorEnviar.toFixed(2) + "<br>";
+    htmlResultado += "<strong>Lucro:</strong> AR$" + lucro.toFixed(2) + "<br>";
   }
 
   resultadoDiv.innerHTML = htmlResultado;
@@ -100,12 +95,9 @@ function limparCampos() {
   document.getElementById("cambio-oficial").value = "";
   document.getElementById("percentual-lucro").value = "";
   document.getElementById("spread-medio").value = "0.98";
+  document.getElementById("taxa-conversao").value = "";
   document.getElementById("valor").value = "";
   document.getElementById("resultado").innerHTML = "";
   document.getElementById("cambio-revenda").textContent = "---";
   document.getElementById("cambio-revenda-container").style.display = "none";
-  document.getElementById("taxa-efetivo").value = "";
-  document.getElementById("taxa-conversao").value = "";
-  document.getElementById("desconto").value = "";
-  document.getElementById("desconto-container").style.display = "none";
 }
