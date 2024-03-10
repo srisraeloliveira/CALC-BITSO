@@ -7,7 +7,7 @@ document.getElementById('tipo-operacao').addEventListener('change', alternarModo
 document.getElementById('taxa-efetivo').addEventListener('input', atualizarCalculos);
 document.getElementById('desconto').addEventListener('input', atualizarCalculos);
 
-// Adiciona evento de clique ao botão "Limpar"
+// Adiciona evento de clique ao botão "Limpar" 
 document.getElementById('limpar-btn').addEventListener('click', function() {
     limparCampos();
     // Recarrega a página
@@ -78,8 +78,8 @@ function limparCampos() {
     document.getElementById('spread-medio').value = "0.98";
     document.getElementById('valor').value = "";
     document.getElementById('resultado').innerHTML = "";
-    document.getElementById('taxa-efetivo').value = "";
-    document.getElementById('desconto').value = "";
+    document.getElementById('taxa-efetivo').value = "10";
+    document.getElementById('desconto').value = "10";
     document.getElementById('desconto-container').style.display = 'none';
 }
 
